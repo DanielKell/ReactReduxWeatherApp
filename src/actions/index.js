@@ -12,9 +12,13 @@ export const FETCH_WEATHER = 'FETCH_WEATHER';
 export function fetchWeather(city) {
     const url = `${ROOT_URL}&q=${city},us`;
     const request = axios.get(url);
+    //This request has a Promise included, because it requests AJAX data
 
     return {
         type: FETCH_WEATHER,
-        payload: request //Add'l data that describes the action
+        payload: request //Add'l data that describes the action. 
+        //If the payload is a promise, redux promise stops the action entirely and
+        //once the request finishes, it dispatches a new action with the payload 
+        //to the reducer
     };
 }
